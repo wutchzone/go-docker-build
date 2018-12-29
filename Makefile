@@ -10,4 +10,4 @@ build:
 	docker image build --tag "wutchzone/go-docker-build" .
 
 run:
-	docker container run --rm -it -e PACKAGE_MANAGER="none" -v `pwd`/_example:/go/src "wutchzone/go-docker-build"
+	docker container run --rm -it -e PACKAGE_MANAGER="none" -v `pwd`/_example:/go/src -v `pwd`/out:/go/out "wutchzone/go-docker-build"

@@ -1,13 +1,10 @@
-
 compile_go()
 {
-    go build *.go -o main
+    go build -o /go/out/main /go/src/*.go
     echo "Succesfully built"
 }
 
-# Navigate to source dir and Check for package manager
-cd /go/src
-
+# Check package manager
 if ! [ -z "$PACKAGE_MANAGER" ]; then
     if [ "$PACKAGE_MANAGER" = "dep" ]; then
         echo "Installing DEP dependencies..."
@@ -26,5 +23,3 @@ echo "available:"
 echo "  dep"
 echo "  none"
 exit 1
-
-

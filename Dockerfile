@@ -9,6 +9,7 @@ RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 WORKDIR /go
 COPY ./script .
 RUN mkdir -p src
+RUN mkdir -p out
 
 # Run script
 CMD ["sh", "./script.sh"]
