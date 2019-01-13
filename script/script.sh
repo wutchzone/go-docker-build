@@ -1,8 +1,15 @@
 compile_go()
 {
-    go build -o /go/out/main /go/src/*.go
-    echo "Succesfully built"
+    if go build -o /go/bin/main /go/src/*.go 2>/dev/null; then
+        echo "Succesfully built"
+    elif go build -o /go/bin/main /go/src/me/project/cmd/*/*.go 2>/dev/null; then
+        echo "Succesfully built"
+    else
+        echo "Error while building"
+    fi
 }
+
+cd /go/src/me/project
 
 # Check package manager
 if ! [ -z "$PACKAGE_MANAGER" ]; then
@@ -11,8 +18,7 @@ if ! [ -z "$PACKAGE_MANAGER" ]; then
         dep ensure
         compile_go
         exit 0
-    fi
-    if [ "$PACKAGE_MANAGER" = "none" ]; then
+    elif [ "$PACKAGE_MANAGER" = "none" ]; then
         compile_go
         exit 0
     fi
