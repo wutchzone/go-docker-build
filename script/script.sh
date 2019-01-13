@@ -9,7 +9,11 @@ compile_go()
     fi
 }
 
-cd /go/src/me/project
+if [ -d /go/src/me/project ]; then
+    cd /go/src/me/project
+else 
+    cd /go/src
+fi
 
 # Check package manager
 if ! [ -z "$PACKAGE_MANAGER" ]; then
